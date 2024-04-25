@@ -1,0 +1,84 @@
+{
+  "name": "@books-about-food/repo",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samtgarson/books-about-food.git"
+  },
+  "author": "samtgarson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samtgarson/books-about-food/issues"
+  },
+  "homepage": "https://github.com/samtgarson/books-about-food#readme",
+  "workspaces": [
+    "web",
+    "admin",
+    "packages/*"
+  ],
+  "cacheDirectories": [
+    "node_modules",
+    "admin/node_modules",
+    "web/node_modules",
+    "web/.next/cache"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "start": "turbo run start",
+    "test": "turbo run test",
+    "lint": "eslint . --ignore-path ./.gitignore && prettier --check --ignore-path ./.prettierignore .",
+    "format": "eslint . --ignore-path ./.gitignore --fix && prettier --write --ignore-path ./.prettierignore .",
+    "dev": "turbo run dev",
+    "dev:web": "turbo run dev --filter web",
+    "dev:test": "DANGER_SEND_EMAILS=true npm run dev",
+    "heroku-postbuild": "turbo run build --filter admin",
+    "postinstall": "patch-package",
+    "type-check": "npx -ws tsc --noEmit"
+  },
+  "devDependencies": {
+    "@books-about-food/prettier-config": "*",
+    "@eslint/js": "^8.49.0",
+    "@samtgarson/eslint-config": "^2.10.1",
+    "eslint": "latest",
+    "eslint-config-next": "^13.5.2",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "husky": "^8.0.3",
+    "knip": "^2.30.0",
+    "lint-staged": "^14.0.1",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "sharp": "^0.32.6",
+    "turbo": "^1.13.2"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@books-about-food"
+    ]
+  },
+  "prettier": "@books-about-food/prettier-config",
+  "lint-staged": {
+    "*.(json|md)": [
+      "prettier --write"
+    ],
+    "*.(ts|tsx|js)": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "web/**/*.(ts|tsx)": [
+      "cd web && npx tsc --noEmit"
+    ],
+    "admin/**/*.(ts|tsx)": [
+      "cd admin && npx tsc --noEmit"
+    ],
+    "web/prisma/schema.prisma": [
+      "prettier --write",
+      "prisma format"
+    ]
+  }
+}

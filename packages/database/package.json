@@ -1,0 +1,23 @@
+{
+  "name": "@books-about-food/database",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+    "db:build": "npx prisma generate && npx prisma migrate deploy",
+    "clean-preview-branches": "neonctl branches list -o json | jq '.[].name | select(. != \"main\")' -c | xargs -I % neonctl branches delete %"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
+  },
+  "devDependencies": {
+    "prisma": "^5.12.1"
+  },
+  "dependencies": {
+    "@books-about-food/shared": "*",
+    "@neondatabase/serverless": "^0.9.0",
+    "@prisma/adapter-neon": "5.12.1",
+    "@prisma/client": "^5.12.1"
+  }
+}

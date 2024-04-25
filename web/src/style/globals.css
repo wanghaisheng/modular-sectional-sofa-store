@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply overflow-x-hidden bg-grey;
+  }
+
+  html,
+  button,
+  input,
+  select,
+  textarea {
+    @apply text-black antialiased;
+  }
+
+  button,
+  [type='button'] {
+    @apply cursor-pointer appearance-none;
+  }
+
+  a,
+  button,
+  label:has(input),
+  [role='menuitem'] {
+    @apply cursor-pointer;
+  }
+
+  a *,
+  button *,
+  label:has(input) *,
+  [role='menuitem'] * {
+    @apply pointer-events-none;
+  }
+
+  b,
+  strong {
+    @apply font-medium;
+  }
+
+  input[type='search']::-webkit-search-decoration,
+  input[type='search']::-webkit-search-cancel-button,
+  input[type='search']::-webkit-search-results-button,
+  input[type='search']::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+  }
+}
+
+@layer components {
+  body.editing {
+    @apply bg-blue-grey;
+  }
+
+  .edit-bg {
+    @apply transition duration-700;
+  }
+
+  body.editing .edit-bg {
+    @apply bg-blue-grey;
+  }
+}
+
+@layer utilities {
+  .all-caps {
+    @apply text-10 font-medium uppercase tracking-[0.12em] sm:text-12;
+  }
+
+  .all-caps-sm {
+    @apply text-10 font-medium uppercase tracking-[0.12em];
+  }
+
+  .book-shadow {
+    box-shadow:
+      0px 2.5px 1.9px rgba(0, 0, 0, 0.02),
+      0px 6px 4.7px rgba(0, 0, 0, 0.028),
+      0px 11.3px 8.8px rgba(0, 0, 0, 0.035),
+      0px 20.1px 15.6px rgba(0, 0, 0, 0.042),
+      0px 37.6px 29.2px rgba(0, 0, 0, 0.05),
+      0px 90px 70px rgba(0, 0, 0, 0.07);
+  }
+
+  .scrollbar-hidden {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+
+  .collapsible-fade {
+    @apply transition-opacity [[data-state="closed"]_&]:opacity-0 [[data-state="open"]_&]:opacity-100;
+  }
+
+  .font-style-title {
+    @apply text-24 sm:text-32;
+  }
+
+  [class*='auto-grid'] > * {
+    max-width: calc(100% + 1px);
+  }
+
+  .float-menu {
+    @apply rounded-md bg-white p-1 shadow-md;
+  }
+}

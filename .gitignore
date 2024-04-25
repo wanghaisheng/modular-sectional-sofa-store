@@ -1,0 +1,19 @@
+dist/
+node_modules/
+.next/
+.DS_Store
+npm-debug.log*
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+.env
+.env*
+.turbo
+
+.mailing
+
+# Sentry Config File
+.sentryclirc
+
+gmail-credentials.json
+gmail-token.json

@@ -1,0 +1,10 @@
+{
+  "name": "@books-about-food/shared",
+  "private": true,
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {},
+  "dependencies": {
+    "slugify": "^1.6.5"
+  }
+}
